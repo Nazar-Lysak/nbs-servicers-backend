@@ -29,13 +29,13 @@ app.post('/auth/login/register', registerValidation, async (req, res) => {
         return res.status(400).json(errors.array());
     }
 
-    const password = req.body.passwordHash;
+    const password = req.body.password;
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
 
     const doc = new UserModel({
         email: req.body.email,
-        fullName: req.body.fullName,
+        userName: req.body.fullName,
         avatarUrl: req.body.avatarUrl,
         passwordHash, 
     });
